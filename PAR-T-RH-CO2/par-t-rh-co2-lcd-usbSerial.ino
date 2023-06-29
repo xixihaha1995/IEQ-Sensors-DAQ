@@ -1,3 +1,7 @@
+// LCD: GND, Positive, A4, A5
+// T-RH: GND, Positive, A3
+// Lighting: GND(Red), GND(Black),Positive(Yellow),A0(Green)
+// CO2: GND, Vin, A1
 #include <Wire.h>
 #include <LiquidCrystal_I2C.h>
 #include <DHT.h>
