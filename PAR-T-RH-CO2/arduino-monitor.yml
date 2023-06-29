@@ -1,0 +1,14 @@
+name: arduino-monitor
+channels:
+  - defaults
+dependencies:
+  - python=3.8
+  - pip
+  - pyserial
+  - google-auth
+  - google-auth-oauthlib
+  - pip:
+    - onedrivesdk
+    - google-api-python-client
+    - google-auth-httplib2
+
