@@ -23,7 +23,8 @@ csv_writer.writerow(['Timestamp', 'Temperature (C)', 'Relative Humidity (%)', 'P
 # Google Drive configuration
 credentials = service_account.Credentials.from_service_account_file('service_account.json')
 drive_service = build('drive', 'v3', credentials=credentials)
-drive_folder_id = '152CuCIGQxotbvbjCL7kS2e5cL8vrKaV-'  # Replace with the ID of your Google Drive folder
+drive_folder_id = '152CuCIGQxotbvbjCL7kS2e5cL8vrKaV-'  # lwu4 Replace with the ID of your Google Drive folder
+drive_folder_id = '1r-UqzGqfAEQUwWDZSRjNh5BJEDP6qrCy' # EmmaS
 
 # Function to upload a file to Google Drive
 def upload_file_to_drive(file_path, folder_id):

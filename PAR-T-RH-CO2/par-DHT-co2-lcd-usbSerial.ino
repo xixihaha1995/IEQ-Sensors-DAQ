@@ -2,6 +2,7 @@
 // T-RH: GND, Positive, A3
 // Lighting: GND(Red), GND(Black),Positive(Yellow),A0(Green)
 // CO2: GND, Vin, A1
+
 #include <Wire.h>
 #include <LiquidCrystal_I2C.h>
 #include <DHT.h>
@@ -26,10 +27,6 @@ void setup() {
   dht.begin();
 }
 
-String line1;
-String line2;
-int scrollDelay = 360;
-
 void loop() {
   sensors_event_t event;
   dht.temperature().getEvent(&event);
@@ -42,21 +39,18 @@ void loop() {
   CO2sensorValue = analogRead(CO2sensorPin);
   co2 = CO2sensorValue * 5.0 / 1023 * 500;
 
-  line1 = String("Temp: " + String(temp) + ", Rad: " + String(ppfd) + " ppfd.");
-  line2 = String("RH: " + String(rel_hum) + " %, CO2: " + String(co2) + " ppm.");
+  lcd.setCursor(0, 0);
+  lcd.print(temp, 2);
+  lcd.print("C");
+  lcd.print(co2, 2);
+  lcd.print("ppm");
 
-  int maxLineLength = max(line1.length(), line2.length());
-  int displayTime = maxLineLength * 200; // Adjust the delay multiplier (200) as per your preference
+  lcd.setCursor(0, 1);
+  lcd.print(rel_hum, 2);
+  lcd.print("%");
+  lcd.print(ppfd, 2);
+  lcd.print("ppfd;");
 
-  // Scroll lines vertically on the display
-  for (int i = 0; i <= maxLineLength; i++) {
-    lcd.setCursor(0, 0);
-    lcd.print(line1.substring(i));
-    lcd.setCursor(0, 1);
-    lcd.print(line2.substring(i));
-    delay(scrollDelay);
-    lcd.clear();
-  }
 
   // Send the measured data over serial communication
   Serial.print("Temperature: ");
@@ -69,8 +63,6 @@ void loop() {
   Serial.print(co2);
   Serial.println(" ppm");
 
-  delay(displayTime);
-
+  delay(5000); // Delay between readings and display updates
   lcd.clear();
-  delay(100); // Add a small delay before displaying the next values
 }
