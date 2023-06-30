@@ -7,7 +7,8 @@ from googleapiclient.http import MediaFileUpload
 from pathlib import Path
 
 # Configure serial communication
-ser = serial.Serial('/dev/ttyACM0', 9600)  # Replace with your Arduino's serial port
+# ser = serial.Serial('/dev/ttyACM0', 9600)  # Replace with your Arduino's serial port
+ser = serial.Serial('COM13', 9600)  # View from device manager or Arduino; Replace with your Arduino's serial port on Windows
 
 # Data collection configuration
 last_save_time = datetime.now()
@@ -40,11 +41,11 @@ while True:
 
     # Extract data values if the line has enough elements
     if len(line.split(',')) == 4:
-        values = line.split(',')
-        temp = values[0].split(':')[1].strip()
-        rh = values[1].split(':')[1].strip()
-        par = values[2].split(':')[1].strip()
-        co2 = values[3].split(':')[1].strip()
+        values = [item.split(':')[1].split()[0] for item in line.split(',')]
+        temp = values[0]
+        rh = values[1]
+        par = values[2]
+        co2 = values[3]
 
         # Check if it's time to create a new file
         current_time = datetime.now()
