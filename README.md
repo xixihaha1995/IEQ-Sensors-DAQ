@@ -19,5 +19,5 @@ A 10 voltages power supply should be used.
 Download the software
 https://www.dataq.com/resources/obsolete/products/di-149/
 DATAQ Hardware Manager > Edit > Enable Channels (5,6,7,8)
-DATAQ Hardware Manager > Edit > Engineering Unit Settings
+DATAQ Hardware Manager > Edit > Engineering Unit Settings #please ref the conversion from ./DAQ/Jan2216.WDQ
 ```
